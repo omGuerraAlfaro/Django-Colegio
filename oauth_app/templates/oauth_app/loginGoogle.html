@@ -41,19 +41,113 @@
     </header>
 
 
-    <!-- login Google -->
-    <section class="container text-center">
-      <h1 class="h2Comunidad2">Iniciar Sesión con Google</h1>
-    {% if user.is_authenticated %}
-      <p>Bienvenido, Haz iniciado sesión como: {{ user.username }}</p>
-    {% else %}
-      <a href="{% provider_login_url 'google' %}">Iniciar Sesión con Google</a>
-    {% endif %}
-    </section>
 
+
+
+    <section id="Contacto" class="container align-items-center section-padding">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="text-center">
+                      <h2><span class="h2Portal">Portal Académico</span></h2>
+                  </div>
+              </div>
+          </div>
+          <!-- Iniciar sesion -->
+          <div class="row align-items-center">
+              <div class="col-md-12 col-lg-4 p-0 pt-4 pb-4 m-auto">
+                  <h2 class="text-center"><span class="h2Sesion">Iniciar Sesión</span></h2>
+                  <form action="{% url 'intranet' %}" class="needs-validation bg-light p-4 m-auto" novalidate>
+                      <div class="row">
+                        <div class="col-md-12 ">
+                            <div class="mb-3">
+                                <label for="rutLogin">Rut</label>
+                                <input type="text" class="form-control" id="rutLogin" placeholder="Ingrese Rut registrado" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label for="ContrasenaLogin">Contraseña</label>
+                                <input type="password" class="form-control" id="ContrasenaLogin" placeholder="Ingrese Su Contraseña" required>
+                            </div>
+                        </div>
+                        <span id="resultadoLoginBien" class="Span-correcto text-center m-auto"></span>
+                        <span id="resultadoLoginMal" class="Span-incorrecto text-center m-auto"></span>
+                        <br>
+                        <br>
+                        <button class="buttonAnimated" type="submit" id="btnLogin">Iniciar Sesión</button>
+                      
+                        <!-- login Google -->
+                      {% if user.is_authenticated %}
+                        <p>Bienvenido, Haz iniciado sesión como: {{ user.username }}</p>
+                      {% else %}
+                        <p></p>                      
+                        <a href="{% provider_login_url 'google' %}" class="text-dark buttonAnimated text-center">Iniciar Sesión con Google</a>
+                      {% endif %}
+                        <!-- Fin Login Google -->                      
+
+                      </div>
+                  </form>
+              </div>
+              <!-- Registrar Usuario -->
+              <div class="col-md-12 col-lg-4 p-0 pt-4 pb-4 m-auto">
+                  <h2 class="text-center"><span class="h2Sesion">Registrar</span></h2>
+                  <form action="#" class="needs-validation bg-light p-4 m-auto" novalidate>
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="mb-3">
+                                  <label for="validationRut">Rut</label>
+                                  <input type="text" class="form-control" id="validationRut" placeholder="Ingrese Rut" required>
+                                  <div class="valid-feedback">
+                                      ok!
+                                  </div>
+                                  <div class="invalid-feedback">
+                                      Por favor, Ingrese Nombre de Usuario
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-12">
+                              <div class="mb-3">
+                                  <label for="validationPass">Contraseña</label>
+                                  <input type="text" class="form-control" id="validationPass" placeholder="Ingrese Contraseña" required>
+                                  <div class="valid-feedback">
+                                      ok!
+                                  </div>
+                                  <div class="invalid-feedback">
+                                      Por favor, Ingrese Contraseña
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-12">
+                              <div class="mb-3">
+                                  <label for="validationPass2">Reingrese Contraseña</label>
+                                  <input type="text" class="form-control" id="validationPass2" placeholder="Reingrese Contraseña" required>
+                                  <span id="valPass" class="Span-correcto"></span>
+                                  <span id="valPass2" class="Span-incorrecto"></span>
+                              </div>
+                          </div>
+                          <div class="col-md-12">
+                              <div class="mb-3">
+                                  <label for="validationEmail">Email</label>
+                                  <input class="form-control" placeholder="Email de contacto" id="validationEmail" type="email" required>
+                                  <div class="valid-feedback">
+                                      ok!
+                                  </div>
+                                  <div class="invalid-feedback">
+                                      Por favor, Ingrese un correo valido Ej: asd@gmail.com
+                                  </div>
+                              </div>
+                          </div>
+                          <button class="buttonAnimated" type="submit" id="ValidarPass">Registrar</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!-- Termino Formulario js -->
 
     
-    <!-- Fin Login Google -->
 
 
     <!-- Comienzo Footer -->
