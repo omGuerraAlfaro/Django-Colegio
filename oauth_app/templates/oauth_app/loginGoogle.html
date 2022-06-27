@@ -41,14 +41,19 @@
     </header>
 
 
-    <!-- login Formulario js  -->
-    <h1>My Google OAuth Project </h1>
+    <!-- login Google -->
+    <section class="container text-center">
+      <h1 class="h2Comunidad2">Iniciar Sesión con Google</h1>
     {% if user.is_authenticated %}
-      <p>Welcome, You are logged in as {{ user.username }}</p>
+      <p>Bienvenido, Haz iniciado sesión como: {{ user.username }}</p>
     {% else %}
-      <a href="{% provider_login_url 'google' %}">Login With Google</a>
+      <a href="{% provider_login_url 'google' %}">Iniciar Sesión con Google</a>
     {% endif %}
-    <!-- Termino Formulario js -->
+    </section>
+
+
+    
+    <!-- Fin Login Google -->
 
 
     <!-- Comienzo Footer -->
