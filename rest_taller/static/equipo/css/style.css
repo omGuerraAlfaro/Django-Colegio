@@ -7,6 +7,11 @@ body {
     background: #f1fbff;
 }
 
+
+#Comunidad{
+    border-bottom: 0%;
+}
+
 .navbar-toggler {
     margin-right: 50px;
 }
@@ -37,6 +42,10 @@ body {
 
 /* cards */
 
+.contentCard {
+    align-items: center;
+}
+
 .card {
     border-radius: 20px;
     box-shadow: 2px 2px 10px #999;
@@ -58,7 +67,23 @@ body {
     width: 50%;
 }
 
-
+.buttonAnimated {
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
 
 
 /* Botones */
