@@ -10,10 +10,10 @@ class Genero(models.Model):
 
 
 class Libro(models.Model):
-    sku = models.AutoField(primary_key=True, verbose_name='Rut')
+    sku = models.AutoField(primary_key=True, verbose_name='Sku')
     autor = models.CharField(max_length=100,null=True, verbose_name='Nombre autor')
-    libro = models.CharField(max_length=100,null=True, verbose_name='Nombre libro')
+    nombreLibro = models.CharField(max_length=100,null=True, verbose_name='Nombre libro')
     genero = models.ForeignKey(Genero, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.libro
+        return self.nombreLibro
