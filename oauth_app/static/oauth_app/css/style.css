@@ -35,6 +35,10 @@ body {
 }
 
 
+.textMayus{
+    text-transform: uppercase;
+}
+
 /* cards */
 
 .card {
