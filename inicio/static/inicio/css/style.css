@@ -23,6 +23,10 @@ body {
     padding: 10px 0;
 }
 
+.textMayus{
+    text-transform: uppercase;
+}
+
 
 /* span validaciones */
 
