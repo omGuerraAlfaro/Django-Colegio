@@ -22,5 +22,3 @@ def loginApi(request):
         return Response("Password incorrecta")
     token, created = Token.objects.get_or_create(user=usuario)
     return Response(token.key)
-
-

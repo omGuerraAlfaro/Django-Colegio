@@ -7,5 +7,5 @@ urlpatterns = [
     #...
     path('loginGoogle',LoginGoogle,name="loginGoogle"),
     path('accounts/', include('allauth.urls')),
-    path('logout', LogoutView.as_view()),
+    path('logout', LogoutView.as_view(), name="logoutGoogle"),
 ]
