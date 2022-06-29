@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load socialaccount %}
-{% csrf_token %}
 {% load static %}
 <head>
     <meta charset="UTF-8">
@@ -77,18 +76,19 @@
             <div class="row align-items-center">
                 <div class="col-md-12 col-lg-4 p-0 pt-4 pb-4 m-auto">
                     <h2 class="text-center"><span class="h2Sesion">Iniciar Sesión</span></h2>
-                    <form action="{% url 'loginGoogle' %}" class="needs-validation bg-light p-4 m-auto" novalidate>
+                    <form method="POST" class="needs-validation bg-light p-4 m-auto" novalidate>
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-md-12 ">
                                 <div class="mb-3">
                                     <label for="rutLogin">Rut</label>
-                                    <input type="text" class="form-control" id="rutLogin" placeholder="Ingrese Rut registrado" required>
+                                    <input type="text" class="form-control" id="rutLogin" placeholder="Ingrese Rut registrado" name="username" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="ContrasenaLogin">Contraseña</label>
-                                    <input type="password" class="form-control" id="ContrasenaLogin" placeholder="Ingrese Su Contraseña" required>
+                                    <input type="password" class="form-control" id="ContrasenaLogin" placeholder="Ingrese Su Contraseña" name="password" required>
                                 </div>
                             </div>
                             <span id="resultadoLoginBien" class="Span-correcto text-center m-auto"></span>
@@ -96,6 +96,7 @@
                             <br>
                             <br>
                             <button class="buttonAnimated" type="submit" id="btnLogin">Iniciar Sesión</button>
+                            
                             <!--Inicio Login Google-->
                             <p></p>
                             <a href="{% provider_login_url 'google' %}" class="text-dark buttonAnimated text-center " style="text-decoration:none">
