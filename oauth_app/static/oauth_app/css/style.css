@@ -39,6 +39,10 @@ body {
     text-transform: uppercase;
 }
 
+#botonLogout{
+    color: white;    
+}
+
 /* cards */
 
 .card {
