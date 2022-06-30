@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'oauth_app',
+    'biblioteca',
     'inicio','equipo',
     'rest_taller','rest_framework','rest_framework.authtoken',
     'allauth',

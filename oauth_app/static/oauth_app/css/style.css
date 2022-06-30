@@ -39,6 +39,10 @@ body {
     text-transform: uppercase;
 }
 
+#botonLogout{
+    color: white;    
+}
+
 /* cards */
 
 .card {
@@ -62,7 +66,9 @@ body {
     width: 50%;
 }
 
-
+.textgoogle{
+    color: #000;
+}
 
 
 /* Botones */

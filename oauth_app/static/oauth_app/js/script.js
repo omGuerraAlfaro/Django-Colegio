@@ -35,7 +35,21 @@ function saltarA(id, tiempo) { //Funcion para ir a cualquier parte del sitio
 
 
 $(document).ready(function() {
+    $("#btnLogin").click(function() {
+        var Usuario = $("#rutLogin").val();
+        var Contraseña = $("#ContrasenaLogin").val();
+        var res;
+        if (Usuario == "200822110" && Contraseña == "pass") {
+            res = "Inicio de sesion valido"
+            $("#resultadoLoginBien").html(res);
+            $("#resultadoLoginMal").html("");
+        } else {
 
+            res = "Usuario/Contraseña incorrecto"
+            $("#resultadoLoginMal").html(res);
+            $("#resultadoLoginBien").html("");
+        }
+    });
 
     $("#ValidarPass").click(function() {
         var password = $("#validationPass").val();

@@ -17,7 +17,7 @@ const btnEliminacion = document.querySelectorAll('.btnEliminar');
 window.addEventListener('load', () => {
     //ubicacion por ciudad especifica
     const url = `http://127.0.0.1:8000/api/lista_taller`
-    fetch(url)
+    fetch(url,)
         .then(response => { return response.json() })
         .then(data => {
             for(let i of data){
