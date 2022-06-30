@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load socialaccount %}
+{% load rest_framework %}
 {% load static %}
 <head>
     <meta charset="UTF-8">
@@ -76,12 +77,12 @@
             <div class="row align-items-center">
                 <div class="col-md-12 col-lg-4 p-0 pt-4 pb-4 m-auto">
                     <h2 class="text-center"><span class="h2Sesion">Iniciar Sesión</span></h2>
-                    <form method="POST" class="needs-validation bg-light p-4 m-auto" novalidate>
+                    <form action="{% url 'login_html' %}" method="POST"  class="needs-validation bg-light p-4 m-auto" novalidate>
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-12 ">
                                 <div class="mb-3">
-                                    <label for="rutLogin">Rut</label>
+                                    <label for="usename">Nombre Usuario</label>
                                     <input type="text" class="form-control" id="rutLogin" placeholder="Ingrese Rut registrado" name="username" required>
                                 </div>
                             </div>
@@ -96,14 +97,18 @@
                             <br>
                             <br>
                             <button class="buttonAnimated" type="submit" id="btnLogin">Iniciar Sesión</button>
-                            
+                        </div>
+                    </form> 
+                    <form class="needs-validation bg-light text-center" required>
+                        <div>      
                             <!--Inicio Login Google-->
                             <p></p>
-                            <a href="{% provider_login_url 'google' %}" class="text-dark buttonAnimated text-center " style="text-decoration:none">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+                            <a href="{% provider_login_url 'google' %}" class="text-dark buttonApi text-center " style="text-decoration:none">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
                                     <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"/>
                                 </svg>
-                                <b>Iniciar Sesión con Google </b>
+                                Iniciar Sesión con Google </span>
                             </a>
                             <!-- Fin Login Google --> 
                         </div>
