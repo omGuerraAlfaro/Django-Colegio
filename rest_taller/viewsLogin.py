@@ -29,4 +29,4 @@ def f_login(request):
 
     token, created = Token.objects.get_or_create(user=user)
     login(request,user)
-    return redirect("inicio/index") #return Response(token.key)
+    return redirect("index") #return Response(token.key)
