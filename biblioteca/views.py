@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from biblioteca import Carrito
+from biblioteca.models import Producto
 from rest_taller.models import Libro
 from rest_taller.serializers import LibroSerializer
 from .forms import LibroForm
@@ -50,3 +52,33 @@ def eliminarLibro(request,id):
     book =  Libro.objects.get(sku=id)
     book.delete()
     return redirect(to='listar_libros')
+
+
+
+""" Funciones Carrito """
+def tienda (request):
+    productos = Producto.objects.all()
+    return render(request, "tienda.html", {'productos':productos})
+
+def agregar_producto(request, producto_id):
+    carrito = Carrito(request)
+    producto = Producto.objects.get(id=producto_id)
+    carrito.agregar(producto)
+    return redirect("Tienda")
+
+def eliminar_producto(request, produto_id):
+    carrito = Carrito(request)
+    producto = Producto.objects.get(id=produto_id)
+    carrito.eliminar(producto)
+    return redirect("Tienda")
+
+def restar_producto(request, produto_id):
+    carrito = Carrito(request)
+    producto = Producto.objects.get(id=produto_id)
+    carrito.restar(producto)
+    return redirect("Tienda")
+
+def limpiar_carrito(request):
+    carrito = Carrito(request)
+    carrito.limpiar()
+    return redirect("Tienda")
