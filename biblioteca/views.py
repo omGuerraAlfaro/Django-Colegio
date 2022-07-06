@@ -1,9 +1,5 @@
 from django.shortcuts import render, redirect
-<<<<<<< HEAD
 from biblioteca.Carrito import Carrito
-=======
-from biblioteca import Carrito
->>>>>>> db02c729f71cbe21c845ed1ccb3028b66abf341f
 from biblioteca.models import Producto
 from rest_taller.models import Libro
 from rest_taller.serializers import LibroSerializer
@@ -65,15 +61,9 @@ def tienda (request):
     return render(request, "tienda.html", {'productos':productos})
 
 def agregar_producto(request, producto_id):
-<<<<<<< HEAD
     Carrito(request)
     producto = Producto.objects.get(id=producto_id)
     Carrito(request).agregar(producto)
-=======
-    carrito = Carrito(request)
-    producto = Producto.objects.get(id=producto_id)
-    carrito.agregar(producto)
->>>>>>> db02c729f71cbe21c845ed1ccb3028b66abf341f
     return redirect("Tienda")
 
 def eliminar_producto(request, produto_id):
