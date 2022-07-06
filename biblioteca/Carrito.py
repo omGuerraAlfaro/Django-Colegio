@@ -19,7 +19,11 @@ class Carrito:
 
     def agregar(self, producto):
         id = str(producto.id)
+<<<<<<< HEAD
+        if id not in self.carrito.keys():
+=======
         if id not in self.Carrito.keys():
+>>>>>>> db02c729f71cbe21c845ed1ccb3028b66abf341f
             self.carrito[id]={
                 "producto_id": producto.id,
                 "nombre": producto.nombre,
