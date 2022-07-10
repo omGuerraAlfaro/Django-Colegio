@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load static %}
 {% load socialaccount %}
 {% load rest_framework %}
-{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -62,7 +63,7 @@
                             <p class="text-center">Bienvenido, Haz iniciado sesión en Google como:</p>
                             <p class="text-center textMayus"><b>{{ user.username }}</b></p>
                             <div  class="text-center buttonAnimated">
-                                <a href="{% url 'logoutGoogle' %}" class="nav-link text-dark">
+                                <a onclick="return confirmarSesion()" href="{% url 'logoutGoogle' %}" class="nav-link text-dark">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
                                         <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
@@ -77,12 +78,12 @@
             <div class="row align-items-center">
                 <div class="col-md-12 col-lg-4 p-0 pt-4 pb-4 m-auto">
                     <h2 class="text-center"><span class="h2Sesion">Iniciar Sesión</span></h2>
-                    <form action="{% url 'loginDjango' %}" method="POST"  class="needs-validation bg-light p-4 m-auto">
+                    <form id="formInicio" action="{% url 'loginApi' %}" method="POST"  class="needs-validation bg-light p-4 m-auto">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-12 ">
                                 <div class="mb-3">
-                                    <label for="username">Nombre Usuario</label>
+                                    <label for="user">Nombre Usuario</label>
                                     <input type="text" class="form-control" id="rutLogin" placeholder="Ingrese Rut registrado" name="username" required>
                                 </div>
                             </div>
@@ -99,9 +100,9 @@
                             <button class="buttonAnimated" type="submit">Iniciar Sesión</button>
                         </div>
                     </form> 
+                    <!--Inicio Login Google-->
                     <form class="needs-validation bg-light text-center" required>
-                        <div>      
-                            <!--Inicio Login Google-->
+                        <div> 
                             <p></p>
                             <a href="{% provider_login_url 'google' %}" class="text-dark buttonApi text-center " style="text-decoration:none">
                                 <span>
@@ -164,6 +165,10 @@
                                 </div>
                             </div>
                             <button class="buttonAnimated" type="submit" id="ValidarPass">Registrar</button>
+
+                            <div id="cosasBajoInicio">
+                                <a href="{%url 'agregaruser'%}">¿No te encuentras registrado? Haz Click Aqui!.</a>
+                            </div>
                         </div>
                     </form>
                 </div>

@@ -29,4 +29,4 @@ def loginApi(request):
 
     token, created = Token.objects.get_or_create(user=user)
     login(request,user)
-    return redirect("index") 
+    return redirect("index") #return Response(token.key)

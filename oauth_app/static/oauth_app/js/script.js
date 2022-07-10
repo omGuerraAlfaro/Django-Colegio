@@ -17,6 +17,17 @@
     }, false);
 })();
 
+function confirmarSesion(){
+    var respuesta2 = confirm("¿Estas Seguro de Cerrar Sesion?");
+
+    if(respuesta2 == true){
+        alert("Sesion Cerrada con Exito!")
+        return true;
+    }else{
+        alert("No se ha cerrado sesion")
+        return false;
+    }
+}
 
 function validarRegistro() {
     var password = document.getElementById("validationPass").value;

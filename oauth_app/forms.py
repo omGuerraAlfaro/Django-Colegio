@@ -1,8 +1,6 @@
 from pyexpat import model
 from unicodedata import name
 from django import forms
-from django.forms import ModelForm
-from ..rest_taller.models import Producto,Sucursal
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
