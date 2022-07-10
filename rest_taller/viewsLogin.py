@@ -19,7 +19,7 @@ def loginApi(request):
     password = request.data['password']
 
     try:
-        user = User.objects.get(email = username)
+        user = User.objects.get(username = username)
     except User.DoesNotExist:
         return redirect("loginGoogle")
 

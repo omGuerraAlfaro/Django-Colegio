@@ -4,4 +4,9 @@ def total_carrito(request):
         if "carrito" in request.session.keys():
             for key, value in request.session["carrito"].items():
                 total += int(value["acumulado"])
-    return {"total_factura":total}            
+        return {"total_carrito": round(total * 0.95)}
+    else:
+        if "carrito" in request.session.keys():
+            for key, value in request.session["carrito"].items():
+                total += int(value["acumulado"])
+        return {"total_carrito": total}
