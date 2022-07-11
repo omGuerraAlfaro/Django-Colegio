@@ -13,7 +13,7 @@ class SignUpForm(UserCreationForm):
 	username = forms.CharField(label='Nombre de usuario')
 	first_name = forms.CharField(max_length=30, required=False, label='Nombre')
 	last_name = forms.CharField(max_length=30, required=False, label='Apellido')
-	email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.', label='Correo Electronico', error_messages={'invalid':'El Correo ngresado es Invalido'})
+	email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.', label='Correo Electronico', error_messages={'invalid':'El Correo ingresado es Invalido'})
 	password1 = forms.CharField(widget=forms.PasswordInput, label='Contraseña')
 	password2 = forms.CharField(widget=forms.PasswordInput, label='Repetir Contraseña')
 	is_staff = forms.BooleanField( required=False, label='Permisos Administracion')

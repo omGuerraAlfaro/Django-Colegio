@@ -18,10 +18,10 @@
 })();
 
 function confirmarSesion(){
-    var respuesta2 = confirm("¿Estas Seguro de Cerrar Sesion?");
+    var respuesta2 = confirm("¿Cerrar Sesion?");
 
     if(respuesta2 == true){
-        alert("Sesion Cerrada con Exito!")
+        alert("Sesion Cerrada!")
         return true;
     }else{
         alert("No se ha cerrado sesion")
