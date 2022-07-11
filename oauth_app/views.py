@@ -20,6 +20,6 @@ def add_user(request):
             
     else:
         form = SignUpForm()
-    return render(request, 'oauth_app/loginGoogle.html', {'form': form})
+    return render(request, 'oauth_app/registrarUsuario.html', {'form': form})
 
 

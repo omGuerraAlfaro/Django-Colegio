@@ -23,6 +23,34 @@ body {
     padding: 10px 0;
 }
 
+#newForm{
+    width: 80%;
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+
+#newForm .row{
+    display: block;
+    margin: auto;
+    padding-top: 2%;
+}
+
+#newForm #btnAgregar{
+    display: block;
+    margin: auto;
+}
+
+#newForm #exito{
+    width: 30%;
+    display: block;
+    margin: auto;
+    background-color: #00000000;
+    border-color: #00000000;
+    color: #fa1b1b;
+}
+
 
 /* span validaciones */
 
