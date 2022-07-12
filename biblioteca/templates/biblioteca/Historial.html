@@ -92,7 +92,7 @@
                             <td>{{pres.email}}</td>
                             <td>{{pres.fechaDevolucion}}</td>
                             {% if pres.estado == 0 %}
-                            <td><a href="{% url 'devolucion' pres.cod_prestamo %}" class="badge btn btn-warning badge-warning">Libros prestados</a></td>
+                            <td><a  {% if user.is_staff %} href="{% url 'devolucion' pres.cod_prestamo %}" {% endif %} class="badge btn btn-warning badge-warning">Libros prestados</a></td>
                             {% else %}
                             <td><a class="badge btn btn-success badge-success">Libros devueltos</a></td>
                             {% endif %}

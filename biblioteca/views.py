@@ -116,12 +116,12 @@ def solicitar_Libros(request):
 
 def historial(request):
     if request.user.is_authenticated and request.user.is_staff:
-        listarPrestamo = Prestamo.objects.all()
+        listarPrestamo = Prestamo.objects.all().order_by('-fechaDevolucion').values()
         datos = {'prestamo':listarPrestamo}
 
         return render(request,'biblioteca/Historial.html',datos)
     else:
-        listarPrestamo = Prestamo.objects.filter(email=request.user.email)
+        listarPrestamo = Prestamo.objects.filter(email=request.user.email).order_by('-fechaDevolucion').values()
         datos = {'prestamo':listarPrestamo}
 
         return render(request,'biblioteca/Historial.html',datos)

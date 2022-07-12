@@ -137,7 +137,7 @@ function actualizarClima() {
                                 console.log('NIEVE');
                                 break;
                             case 'Clear':
-                                iconoAnimado.src = "static/inicio/animated/day.svg'%}"
+                                iconoAnimado.src = 'static/inicio/animated/day.svg'
                                 console.log('LIMPIO');
                                 break;
                             case 'Atmosphere':
