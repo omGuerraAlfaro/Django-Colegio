@@ -2,12 +2,11 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th scope="row" colspan="3" class="text-center">CARRITO</th>
+            <th scope="row" colspan="3" class="text-center">Libros seleccionados</th>
         </tr>
         <tr>
-            <th scope="col">NOMBRE</th>
-            <th scope="col">PRECIO</th>
-            <th scope="col">CANTIDAD</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Dias</th>
         </tr>
     </thead>
     <tbody>
@@ -15,28 +14,22 @@
         {% for key, value in request.session.carrito.items %}
             <tr>
                 <td>{{value.nombre}}</td>
-                <td>{{value.precio}}</td>
-                <td>{{value.acumulado}}</td>
-                <a href="{% url 'Add' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
-                <a href="{% url 'Sub' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a>
+                <td>{{value.dias}}</td>
             </tr>
         {% endfor %}    
         {% else %}
         <tr>
             <td colspan="3">
-                <div class="alert alert-danger text-center"> SIN PRODUCTOS</div>
+                <div class="alert alert-danger text-center"> No hay libros seleccionados</div>
             </td>
         </tr>
         {% endif %}
-            <tr>
-                <th scope="row">TOTAL:</th>
-                <td colspan="2">$ {{total_carrito}}</td>
-            </tr>
     </tbody>
 </table>
 <hr>
 </div>
 <div class="row text-center">
-    <div class="col-6"><a href="{% url 'CLS' %}" class="btn btn-danger">LIMPIAR</a></div>
-    <div class="col-6"><a href="#" class="btn btn-success">GUARDAR</a></div>
+    <br>
+    <div class="col-6"><a href="{% url 'CLS' %}" class="buttonAnimatedCLS text-decoration-none">Limpiar</a></div>
+    <div class="col-6"><a href="{% url 'solicitar_Libros' %}" class="buttonAnimated text-decoration-none">Solicitar</a></div>
 </div>

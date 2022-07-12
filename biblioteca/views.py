@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from biblioteca.Carrito import Carrito
 from biblioteca.models import Producto
+from biblioteca.models import Prestamo
 from rest_taller.models import Libro
+import random
 from rest_taller.serializers import LibroSerializer
 from .forms import LibroForm
+from datetime import datetime, timedelta
 
 # Create your views here.
 def listar_libros(request):
@@ -62,23 +65,70 @@ def tienda (request):
 
 def agregar_producto(request, producto_id):
     Carrito(request)
-    producto = Producto.objects.get(id=producto_id)
+    producto = Libro.objects.get(sku=producto_id)
     Carrito(request).agregar(producto)
-    return redirect("Tienda")
+    return redirect("listar_libros")
 
 def eliminar_producto(request, produto_id):
     carrito = Carrito(request)
-    producto = Producto.objects.get(id=produto_id)
+    producto = Libro.objects.get(sku=producto_id)
     carrito.eliminar(producto)
-    return redirect("Tienda")
+    return redirect("listar_libros")
 
 def restar_producto(request, produto_id):
     carrito = Carrito(request)
-    producto = Producto.objects.get(id=produto_id)
+    producto = Libro.objects.get(sku=producto_id)
     carrito.restar(producto)
-    return redirect("Tienda")
+    return redirect("listar_libros")
 
 def limpiar_carrito(request):
     carrito = Carrito(request)
     carrito.limpiar()
-    return redirect("Tienda")
+    return redirect("listar_libros")
+
+def solicitar_Libros(request):
+    carrito = Carrito(request)
+    libros = ''
+    diasMax = 0
+    fechadevolucion= datetime.today()
+    numAleatorio = random.randint(1,10000) 
+    if "carrito" in request.session.keys():
+        for key, value in request.session["carrito"].items():
+            libros = libros + value["nombre"] + '- '
+            if diasMax>value["dias"]:
+               diasMax = diasMax
+            elif diasMax<=value["dias"]:
+                 diasMax = value["dias"]
+            email = request.user.email
+        if diasMax!=0:
+            fechadevolucion= fechadevolucion + timedelta(days=diasMax)
+            while Prestamo.objects.filter(cod_prestamo=numAleatorio).exists():
+                Prestamo.objects.create(cod_prestamo=numAleatorio + 1, lista_libros=libros ,email=email ,fechaDevolucion=fechadevolucion, estado=0)
+            else:
+                Prestamo.objects.create(cod_prestamo=numAleatorio,lista_libros=libros ,email=email ,fechaDevolucion=fechadevolucion, estado=0)
+        else: 
+            carrito.limpiar()
+    carrito.limpiar()
+    return redirect('listar_libros')
+
+
+
+
+def historial(request):
+    if request.user.is_authenticated and request.user.is_staff:
+        listarPrestamo = Prestamo.objects.all()
+        datos = {'prestamo':listarPrestamo}
+
+        return render(request,'biblioteca/Historial.html',datos)
+    else:
+        listarPrestamo = Prestamo.objects.filter(email=request.user.email)
+        datos = {'prestamo':listarPrestamo}
+
+        return render(request,'biblioteca/Historial.html',datos)
+    
+def devolucion(self,cod_prestamo):
+    pres = Prestamo.objects.get(cod_prestamo=cod_prestamo)
+    pres.estado = 1
+    pres.save()
+
+    return redirect('historial')

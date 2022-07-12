@@ -3,6 +3,7 @@ from this import s
 from django.shortcuts import redirect, render
 
 from biblioteca.models import Producto
+from rest_taller.models import Libro
 
 
 class Carrito:
@@ -18,17 +19,13 @@ class Carrito:
     
 
     def agregar(self, producto):
-        id = str(producto.id)
+        id = str(producto.sku)
         if id not in self.carrito.keys():
             self.carrito[id]={
-                "producto_id": producto.id,
-                "nombre": producto.nombre,
-                "acumulado": producto.precio,
-                "cantidad": 1,
+                "producto_id": producto.sku,
+                "nombre": producto.nombreLibro,
+                "dias": producto.dias,
             }
-        else:
-            self.carrito[id]["cantidad"] += 1
-            self.carrito[id]["acumulado"] += producto.precio
         self.guardar_carrito()
 
     def guardar_carrito(self):

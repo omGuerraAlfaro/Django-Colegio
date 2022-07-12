@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
-{% load socialaccount %}
-{% csrf_token %}
+
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,11 +11,10 @@
     {% load static %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="{% static 'equipo/css/bootstrap.min.css'%}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'equipo/css/style.css'%}">
-    <link rel="stylesheet" href="{% static 'equipo/css/styleAPI.css'%}">
+    <link href="{% static 'biblioteca/css/bootstrap.min.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'biblioteca/css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'biblioteca/css/styleAPI.css'%}">
 </head>
-
 
 <body>
     <!-- header -->
@@ -27,7 +26,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <hr>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 bg-light">
-                {% if user.is_authenticated %}
                 <li class="nav-item align-items-center text-center">
                     <a href="{% url 'index' %}" class="nav-link text-dark">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi d-block mx-auto mb-1" viewBox="0 0 16 16">
@@ -37,7 +35,17 @@
                                 d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Zm0 5.189c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.691 0-5.018Z" />
                         </svg>Inicio
                     </a>
+                </li>  
+                {% if user.is_authenticated %}            
+                <li class="nav-item align-items-center text-center">
+                    <a href="{% url 'listar_libros' %}" class="nav-link text-dark">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-bookshelf d-block mx-auto mb-1" viewBox="0 0 16 16">
+                            <path d="M2.5 0a.5.5 0 0 1 .5.5V2h10V.5a.5.5 0 0 1 1 0v15a.5.5 0 0 1-1 0V15H3v.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zM3 14h10v-3H3v3zm0-4h10V7H3v3zm0-4h10V3H3v3z"/>
+                          </svg>Biblioteca
+                    </a>
                 </li>
+
+                
                 <li class="nav-item align-items-center text-center px-5">
                     <a href="{% url 'loginGoogle' %}" class="nav-link text-dark">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi d-block mx-auto mb-1" viewBox="0 0 16 16">
@@ -48,16 +56,6 @@
                     </a>
                 </li>
                 {% else %}
-                <li class="nav-item align-items-center text-center">
-                    <a href="{% url 'index' %}" class="nav-link text-dark">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi d-block mx-auto mb-1" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.707L8 2.207l6.646 6.646a.5.5 0 0 0 .708-.707L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z" />
-                            <path fill-rule="evenodd"
-                                d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Zm0 5.189c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.691 0-5.018Z" />
-                        </svg>Inicio
-                    </a>
-                </li>
                 <li class="nav-item align-items-center text-center px-5">
                     <a href="{% url 'loginGoogle' %}" class="nav-link text-dark">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi d-block mx-auto mb-1" viewBox="0 0 16 16">
@@ -73,55 +71,38 @@
 
 
     <section id="Comunidad" class="container section-padding">
-        <h2 class="text-center"><span class="h2Comunidad">Nuestro Equipo Educativo</span></h2>
-        <hr>
-        <div class="container-fluid align-items-center text-center" style="align-items: center;">
-            <div class="row col-lg-12 contentCard " style="gap: 20px; margin-left: 150px;">
-                {% for d in docentes %}
-                <div class="card col-lg-3 text-center align-items-center" style="align-items: center;">
-                    <div class="container-fluid ">                                               
-                        <div>
-                            <h4><b>{{d.nombre}} {{d.apellidoPat}} {{d.apellidoMat}}</b></h4>
-                        </div>
-                        <div>
-                            <p>Profesor/a de {{d.asignatura}}</p>
-                        </div>
-                        {% if user.is_staff %}                        
-                        <div class="row">
-                            <div class="col-md-6">
-                            <a href="{% url 'modificarDocente' d.rut %} " class="text-dark"> 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                            </svg>
-                            </a>
-                        </div class="row">
-                            <div class="col-md-6">
-                            <a href="{% url 'eliminarDocente' d.rut %} " class="text-dark btnEliminar">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                            </svg>                        
-                            </a> 
-                            </div>
-                        </div>
-                        <br>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        <hr>
-        {% if user.is_staff %} 
-        <div class="align-items-center text-center">
-            <a href="{% url 'agregarDocente' %}" class="text-dark">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi d-block mx-auto mb-1" viewBox="0 0 16 16">
-                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-                  </svg> Añadir docente
-            </a>
-        </div>
-        {% endif %}
+        <h2 class="text-center"><span class="h2Comunidad">Historial de pedidos de {{ user.username }} </span></h2>
+            <div class="table-responsive">
+                {% if user.is_authenticated %}
+                <table class="table" id="listaHistorial">
+                    <thead>
+                        <tr id="trTabla">
+                            <th class="titulosColumnas">Codigo Prestamo</th>
+                            <th class="titulosColumnas">Libro/s solicitado/s</th>
+                            <th class="titulosColumnas">Email Solicitante</th>
+                            <th class="titulosColumnas">Fecha de devolucion</th>
+                            <th class="titulosColumnas">Estado Prestamo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyTabla">
+                        {% for pres in prestamo %}
+                        <tr>
+                            <td>N° {{pres.cod_prestamo}}</td>
+                            <td>{{pres.lista_libros}}</td>
+                            <td>{{pres.email}}</td>
+                            <td>{{pres.fechaDevolucion}}</td>
+                            {% if pres.estado == 0 %}
+                            <td><a href="{% url 'devolucion' pres.cod_prestamo %}" class="badge btn btn-warning badge-warning">Libros prestados</a></td>
+                            {% else %}
+                            <td><a class="badge btn btn-success badge-success">Libros devueltos</a></td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
     </section>
+    
     <!-- Fin info colegio -->
 
     <!-- Comienzo Footer -->
@@ -167,8 +148,8 @@
 
     <!-- All Js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js " integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=" anonymous " referrerpolicy="no-referrer "></script>
-    <script src="{% static 'equipo/js/bootstrap.bundle.min.js'%} "></script>
-    <script src="{% static 'equipo/js/ScriptDjango.js'%}"></script>
+    <script src="{% static 'biblioteca/js/bootstrap.bundle.min.js'%} "></script>
+    <script src="{% static 'biblioteca/js/ScriptDjango.js'%}"></script>
 </body>
 
 </html>

@@ -1,4 +1,3 @@
-/* (function () {
     btnEliminacion.forEach((btn) => {
         btn.addEventListener("click", function (e) {
             e.preventDefault();
@@ -23,7 +22,7 @@
     });
         
 });
- */
+
 
 
 
